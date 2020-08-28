@@ -7,14 +7,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
-import com.cgfay.cameralibrary.R;
 import com.cgfay.camera.fragment.CameraPreviewFragment;
-import com.cgfay.facedetect.engine.FaceTracker;
+import com.cgfay.cameralibrary.R;
 import com.cgfay.uitls.utils.NotchUtils;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 相机预览页面
@@ -35,15 +35,15 @@ public class CameraActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container, mPreviewFragment, FRAGMENT_CAMERA)
                     .commit();
         }
-        faceTrackerRequestNetwork();
+//        faceTrackerRequestNetwork();
     }
 
-    /**
-     * 人脸检测SDK验证，可以替换成自己的SDK
-     */
-    private void faceTrackerRequestNetwork() {
-        new Thread(() -> FaceTracker.requestFaceNetwork(CameraActivity.this)).start();
-    }
+//    /**
+//     * 人脸检测SDK验证，可以替换成自己的SDK
+//     */
+//    private void faceTrackerRequestNetwork() {
+//        new Thread(() -> FaceTracker.requestFaceNetwork(CameraActivity.this)).start();
+//    }
 
     @Override
     protected void onResume() {
