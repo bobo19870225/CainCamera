@@ -66,4 +66,7 @@ public final class FaceTrackParam {
         trackerCallback = null;
     }
 
+    public void setCanFaceTrack(boolean canFaceTrack) {
+        this.canFaceTrack = canFaceTrack;
+    }
 }

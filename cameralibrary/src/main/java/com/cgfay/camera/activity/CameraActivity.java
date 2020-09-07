@@ -7,12 +7,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
 import com.cgfay.camera.fragment.CameraPreviewFragment;
 import com.cgfay.cameralibrary.R;
+import com.cgfay.facedetect.engine.FaceTrackParam;
+import com.cgfay.facedetect.utils.FileUtil;
 import com.cgfay.uitls.utils.NotchUtils;
+import com.zeusee.main.hyperlandmark.jni.FaceTracking;
+
+import java.io.File;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +30,7 @@ public class CameraActivity extends AppCompatActivity {
     private static final String FRAGMENT_CAMERA = "fragment_camera";
 
     private CameraPreviewFragment mPreviewFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +42,18 @@ public class CameraActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container, mPreviewFragment, FRAGMENT_CAMERA)
                     .commit();
         }
+        InitModelFiles();
+
 //        faceTrackerRequestNetwork();
     }
 
+    void InitModelFiles() {
+        String assetPath = "ZeuseesFaceTracking";
+        String sdcardPath = Environment.getExternalStorageDirectory()
+                + File.separator + assetPath;
+        FileUtil.copyFilesFromAssets(this, assetPath, sdcardPath);
+        FaceTrackParam.getInstance().setCanFaceTrack(true);
+    }
 //    /**
 //     * 人脸检测SDK验证，可以替换成自己的SDK
 //     */
@@ -98,6 +114,7 @@ public class CameraActivity extends AppCompatActivity {
     private BroadcastReceiver mHomePressReceiver = new BroadcastReceiver() {
         private final String SYSTEM_DIALOG_REASON_KEY = "reason";
         private final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
+
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();

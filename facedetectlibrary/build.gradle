@@ -4,7 +4,6 @@ android {
     compileSdkVersion 29
 
 
-
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
@@ -12,9 +11,22 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        externalNativeBuild {
+            cmake {
+                cmake {
+                    cppFlags "-std=c++11 -frtti -fexceptions"
+                    abiFilters 'armeabi-v7a', 'arm64-v8a'
+                    version "3.10.2"
+                }
+            }
+        }
     }
-
+    packagingOptions {
+        pickFirst 'lib/arm64-v8a/libffmpeg.so'
+        pickFirst 'lib/armeabi-v7a/libffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libyuv.so'
+        pickFirst 'lib/armeabi-v7a/libyuv.so'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -23,6 +35,11 @@ android {
     }
 
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
     repositories {
         flatDir {
             dirs 'libs'

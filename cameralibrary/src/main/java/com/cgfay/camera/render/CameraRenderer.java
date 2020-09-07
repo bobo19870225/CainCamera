@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.cgfay.camera.camera.CameraParam;
 import com.cgfay.camera.presenter.PreviewPresenter;
+import com.cgfay.facedetect.utils.FileUtil;
 import com.cgfay.filter.gles.EglCore;
 import com.cgfay.filter.gles.WindowSurface;
 import com.cgfay.filter.glfilter.color.bean.DynamicColor;
@@ -21,6 +22,7 @@ import com.cgfay.filter.glfilter.makeup.bean.DynamicMakeup;
 import com.cgfay.filter.glfilter.stickers.StaticStickerNormalFilter;
 import com.cgfay.filter.glfilter.stickers.bean.DynamicSticker;
 import com.cgfay.filter.glfilter.utils.OpenGLUtils;
+import com.zeusee.main.hyperlandmark.jni.FaceTracking;
 
 import java.lang.ref.WeakReference;
 import java.nio.ByteBuffer;
@@ -131,6 +133,7 @@ public class CameraRenderer extends Thread {
      * @param height
      */
     public void onSurfaceChanged(int width, int height) {
+        FaceTracking.getInstance().FaceTrackingInit(FileUtil.modelPath + "/models", height, width);
         Handler handler = getHandler();
         handler.sendMessage(handler.obtainMessage(CameraRenderHandler.MSG_DISPLAY_CHANGE, width, height));
     }
