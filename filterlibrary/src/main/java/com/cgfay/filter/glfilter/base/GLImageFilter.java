@@ -217,9 +217,6 @@ public class GLImageFilter {
 
     /**
      * 绘制
-     * @param textureId
-     * @param vertexBuffer
-     * @param textureBuffer
      */
     protected void onDrawTexture(int textureId, FloatBuffer vertexBuffer, FloatBuffer textureBuffer) {
         // 绑定顶点坐标缓冲
