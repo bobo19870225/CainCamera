@@ -52,7 +52,6 @@ public class MakeupNormalLoader extends MakeupBaseLoader {
 
     /**
      * 根据人脸更新顶点
-     * @param faceIndex
      */
     protected void updateVertices(int faceIndex) {
         if (mVertexBuffer == null || mVertices == null) {

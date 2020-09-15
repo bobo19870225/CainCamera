@@ -122,8 +122,6 @@ public final class LandmarkEngine {
 
     /**
      * 计算额外人脸顶点，新增8个额外顶点坐标
-     * @param vertexPoints
-     * @param index
      */
     public void calculateExtraFacePoints(float[] vertexPoints, int index) {
         if (vertexPoints == null || index >= mFaceArrays.size() || mFaceArrays.get(index) == null
@@ -212,7 +210,6 @@ public final class LandmarkEngine {
 
     /**
      * 计算
-     * @param vertexPoints
      */
     private void calculateImageEdgePoints(float[] vertexPoints) {
         if (vertexPoints == null || vertexPoints.length < 122 * 2) {
@@ -299,8 +296,6 @@ public final class LandmarkEngine {
 
     /**
      * 阴影(修容)顶点坐标，修容用的是整个人脸的顶点坐标
-     * @param vetexPoints
-     * @param faceIndex
      */
     public void getShadowVertices(float[] vetexPoints, int faceIndex) {
 
@@ -308,8 +303,6 @@ public final class LandmarkEngine {
 
     /**
      * 取得脸颊(腮红)顶点坐标
-     * @param vertexPoints
-     * @param faceIndex
      */
     public void getBlushVertices(float[] vertexPoints, int faceIndex) {
 
@@ -317,8 +310,6 @@ public final class LandmarkEngine {
 
     /**
      * 取得眉毛顶点坐标
-     * @param vertexPoints
-     * @param faceIndex
      */
     public void getEyeBrowVertices(float[] vertexPoints, int faceIndex) {
 
@@ -326,8 +317,6 @@ public final class LandmarkEngine {
 
     /**
      * 取得眼睛(眼影、眼线等)顶点坐标，可参考assets目录下的 眼睛遮罩标注.jpg
-     * @param vertexPoints
-     * @param faceIndex
      */
     public synchronized void getEyeVertices(float[] vertexPoints, int faceIndex) {
         if (vertexPoints == null || vertexPoints.length < 80
